@@ -1,0 +1,56 @@
+<div style="width: 100%">
+  <header-nav-directive></header-nav-directive>
+</div>
+<div>
+<h1 style="text-align: center; color: black">Μεταφορά χρημάτων στο πορτοφόλι {{username}}</h1>
+</div>
+<br>
+<br>
+<div class="container-fluid bg">
+  
+  <div class="row" >
+
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+
+        
+        <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+        <!--<form class="form" ng-submit="register()" style="margin-bottom: 35%;overflow: scroll;">-->
+        <form class="form" name="forma" ng-submit="transfer()" style="margin-bottom: 35%;">
+          <div class="form-group">
+            <label style="color: aqua">Ποσό</label>
+            <input type="number" class="form-control"  placeholder="money" ng-model="amount" min="0" required>
+          </div>
+          <div class="form-group">
+            <label style="color: aqua">Αριθμός κάρτας</label>
+            <input type="text" class="form-control"  ng-model="cardId" placeholder="xxxxxxxxxxxxxxxx" maxlength="16" pattern="\d{16}" required>
+          </div>
+          <div class="form-group">
+            <label style="color: aqua">Κάτοχος κάρτας</label>
+            <input type="text" class="form-control"  placeholder="owner" ng-model="cardHolder"  required>
+          </div>  
+          <div class="form-group">
+            <label style="color: aqua">CVV</label>
+            <input type="text" class="form-control" name="cardHolder" placeholder="CVV" ng-model="CCV" maxlength="3" pattern="\d{3}" required>
+          </div>
+             
+          
+          <div class="row">
+
+          <div class="col-md-4 col-sm-4 col-xs-12"></div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+          <!--div-->
+              
+              <button type="submit" class="btn btn-success"  >Μεταφορά!</button>
+            
+            <!--button type="submit" class="btn btn-success"></button-->
+          <!--/div-->
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div footer-directive></div>
+

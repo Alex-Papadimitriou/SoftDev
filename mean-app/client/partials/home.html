@@ -1,0 +1,69 @@
+<!--
+<h1>Yo!</h1>
+<div ng-controller="logoutController">
+  <a ng-click='logout()' class="btn btn-default">Logout</a>
+</div>
+-->
+<!DOCTYPE html>
+<html ng-app="myApp" style="width: 100%">
+<head>
+	
+	<title>Heapsters Project</title>
+
+	
+	<link rel="stylesheet" href="./partials/app.css">
+	<!--<link rel="stylesheet" type="text/css" href="jquery-3.2.1.min.js">-->
+</head>
+
+<body style="width: 100%">
+
+<div style="width: 100%">
+	<header-nav-directive></header-nav-directive>
+</div>
+<!--logo sta aristera kai sta dexia thelw ena follow Heapsters on twitter kai ena donate button. sunolika thelw 4 pragmata sto footer-->
+
+ 	<div ng-if=isProvider>
+  
+   		<div class="container" >
+    		<div class="row">
+				<div class="col-lg-12 col-md-12 col col-sm-12 col-xs-12">
+					<div id="content">	
+						<h1 style="color: black">Funactivities</h1>
+						<h2 style="color: aliceblue"><strong>Καλωσήρθατε στο Funactivities!</strong></h2>
+						<label><h3 style="color: aliceblue"><strong>Η κορυφαία πλατφόρμα για γονείς στην<br>αναζήτηση δραστηριοτήτων για τα παιδιά τους!<br>
+						Δημιουργήστε την δική σας δραστηριότητα<br> και δειτε άλλες δραστηριότητες!</strong></h3></label><br>
+						<button onclick="location.href='/#/events';" class="btn btn-primary btn-lg"><strong>Αναζήτηση δραστηριότητας</strong>  <i class="fa fa-search"></i></button>
+
+						<button onclick="location.href='/#/addEvent';" class="btn btn-success btn-lg"><strong>Προσθήκη νέου Event</strong>  <i class="fa fa-plus"></i></button>
+						
+					</div>	
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div ng-if=!isProvider>
+		<div class="container" >
+    		<div class="row">
+				<div class="col-lg-12 col-md-12 col col-sm-12 col-xs-12">
+					<div id="content">	
+						<h1 style="color: black">Funactivities</h1>
+						<h2 style="color: aliceblue"><strong>Καλωσήρθατε στο Funactivities!</strong></h2>
+						<label><h3 style="color: aliceblue"><strong>Η κορυφαία πλατφόρμα για γονείς στην<br>αναζήτηση δραστηριοτήτων για τα παιδιά τους!<br>
+						Περιηγηθείτε ελεύθερα στις σελίδες μας και επιλέξτε τις<br> καλύτερες δραστηριότητες για εσάς και τα παιδιά σας!</strong></h3></label><br>
+						<button onclick="location.href='/#/events';" class="btn btn-primary btn-lg"><strong>Αναζήτηση δραστηριότητας</strong>  <i class="fa fa-search"></i></button>
+					</div>	
+				</div>
+			</div>
+		</div>
+
+	</div>	
+
+
+	
+ <footer-directive></footer-directive>
+		
+</body>
+
+</html>

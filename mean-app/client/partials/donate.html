@@ -1,0 +1,60 @@
+<div style="width: 100%">
+  <header-nav-directive></header-nav-directive>
+</div>
+<div>
+<h1 style="text-align: center; color: black">Δωρεά</h1>
+</div>
+
+<br>
+<br>
+<div class="container-fluid bg">
+  
+  <div class="row" >
+
+    <div class="col-md-4 col-sm-4 col-xs-12"></div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+        <label><h3 style="color: black" ><strong>Βοηθήστε μας να βελτιωθούμε και να προσφέρουμε ακόμα καλύτερες παροχές σε εσάς!!</strong></h3></label>
+        
+        <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+        <!--<form class="form" ng-submit="register()" style="margin-bottom: 35%;overflow: scroll;">-->
+        <form class="form" name="forma" ng-submit="transfer()" style="margin-bottom: 35%;">
+          <div class="form-group">
+            <label><h3 style="color: black" ><strong>Ποσό</strong></h3></label>
+            <input type="number" class="form-control"  ng-model="amount"  required>
+          </div>
+          <div class="form-group">
+            <label><h3 style="color: black" ><strong>Αριθμός Πιστωτικής Κάρτας</strong></h3></label>
+            <input type="text" class="form-control"  ng-model="cardId" maxlength="16" pattern="\d{16}" required>
+          </div>
+          <div class="form-group">
+            <label><h3 style="color: black" ><strong>Κάτοχος Πιστωτικής Κάρτας</strong></h3></label>
+            <input type="text" class="form-control"  ng-model="cardHolder"  required>
+          </div>  
+          <div class="form-group">
+            <label><h3 style="color: black" ><strong>CVV</strong></h3></label>
+            <input type="text" class="form-control" name="cardHolder" ng-model="CCV" maxlength="3" pattern="\d{3}" required>
+          </div>
+          
+          <div class="row">
+
+          <div class="col-md-4 col-sm-4 col-xs-12"></div>
+          <div class="col-md-4 col-sm-4 col-xs-12">
+          <!--div-->
+              <button type="submit" class="btn btn-success" onclick="myFunction()" >Δωρεά!</button>
+            
+            <!--button type="submit" class="btn btn-success"></button-->
+          <!--/div-->
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div footer-directive></div>
+
+<script>
+function myFunction() {
+    alert("Σας ευχαριστούμε πολύ για τη δωρεά σας!");
+}
+</script>

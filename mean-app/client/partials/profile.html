@@ -1,0 +1,261 @@
+<script type="text/javascript">
+	function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+  
+
+
+</script>
+<div style="width: 100%">
+  <header-nav-directive></header-nav-directive>
+</div>
+<script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq6gVXzKjVwYvc0Y6cB9LWJcngquAnsY4&language=el" async defer>
+</script> 
+<style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+    }
+</style>
+<div class="container">
+  
+  
+	
+    
+      <h2 style="text-align: center;color: aliceblue;font-size: 50px;" ><strong>Καλωσήρθατε στο προφίλ σας </strong><span style="font-size: 20px;"><a id="target" style="color: blue" href="./#/faq#faq_profile">[?]</a></span></h2>
+      <h2 style="text-align: center;color: aliceblue;font-size: 45px;">{{username}}</h2>
+      <p style="height: 30px"></p>
+  
+  
+  <div  class="container" style="text-align: center;width: 100%;" ng-if=isProvider>
+    <div style="width: 100%;text-align: center;" class="row"  >
+    <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+        <button id="synopsis_btn" class="btn btn-info btn-lg" onclick="myFunction()" >Στοιχεία του λογαριασμού μου  <i class="fa fa-info-circle"></i></button>		
+  	 	
+        <div id="synopsis" style="color: aliceblue;display: none" >
+      <form class="form" name="formb" ng-submit="updateProvider('picture',imgurl)">
+          <div class="form-group">
+            <label style="color: aqua">Εικόνα Profile</label>
+              <input filepicker type="filepicker" data-fp-services="computer" on-success="onSuccess(event.fpfile)" data-fp-button-class="btn btn-success" />
+          </div>
+        <button type="submit" class="btn btn-primary mb-2">Αποθήκευση αλλαγών!  <i class="fa fa-check" ></i></button>
+    </form>
+
+    <img src = "{{picture}}" height="300" width="300">
+
+
+
+    	<br>
+        <h4 style="color: azure"> Όνομα χρήστη </h4>
+        <input style="width: 100%" type="text"  class="form-control" value={{username}} readonly>
+        <br>
+		<h4 style="color: azure">Όνομα </h4>
+        <input style="width: 100%" type="text" class="form-control"  value={{firstname}} readonly>
+        <br>
+        <h4 style="color: azure">Επώνυμο  </h4>
+        <input style="width: 100%" type="text" class="form-control"  value={{lastname}} readonly>
+        <br>
+        <h4 style="color: azure">Όνομα εταιρείας  </h4>
+        <input style="width: 100%" type="text" class="form-control"  value={{companyname}} readonly>
+        <br>
+        <h5 style="color: brown">*Συμπληρώστε τα στοιχεία επικοινωνίας. </h6>
+        <br>
+        <form class="form" name="forma" ng-submit="updateProvider('email',newemail)">
+          <div class="form-group">
+            <label style="color: aqua">Ηλεκτρονική Διεύθυνση</label>
+				<input type="email" class="form-control" ng-model="newemail" placeholder={{email}}>
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Αποθήκευση αλλαγών!  <i class="fa fa-check" ></i></button>
+        </form>
+		
+		
+		<form class="form" name="formb" ng-submit="updateProvider('phone',newphone)">
+          <div class="form-group">
+            <label style="color: aqua">Νέο Τηλέφωνο Επικοινωνίας</label>
+				<input type="text" class="form-control" ng-model="newphone" placeholder={{phone}}>
+          </div>
+        <button type="submit" class="btn btn-primary mb-2">Αποθήκευση αλλαγών!  <i class="fa fa-check" ></i></button>
+		</form>
+		
+		
+		
+        <h4 style="color: blue">Ταχυδρομικός κώδικας(δεν είναι φτιαγμένο για update ακόμα) </h4>
+        <form class="form-inline">
+        <input style="width: 100%" type="text" class="form-control"  value={{postalcode}} pattern="\d{6}"  >
+        <button type="submit" class="btn btn-primary mb-2">Αποθήκευση αλλαγών <i class="fa fa-check" ></i></button>
+        </form>
+
+        </div>
+      </div>
+        
+      <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+        <button  class="btn btn-success btn-lg"> <a ng-href='/#/providerhistory?id={{username}}' > Ιστορικό και Στατιστικά </a> <i class="fa fa-database"></i></button>
+        <p style="height: 40px"></p>
+        <button id="des_btn" class="btn btn-info btn-lg" onclick="myFunction_des()" >Επεξεργασία περιγραφής παρόχου <i class="fa fa-info"></i></button>  
+        <div id="prov_des" style="display: none">  
+        <h3 ><strong>Περιγράψτε τις υπηρεσίες σας</strong></h3>
+        <form class="form-inline" ng-submit="updateProvider('description',newdescription)">
+			<textarea name="description" cols="60" rows="7" ng-model="newdescription" placeholder={{description}}></textarea>
+			<button type="submit" class="btn btn-primary mb-2">Αποθήκευση αλλαγών  <i class="fa fa-check" ></i></button>
+        </form>
+        </div>    
+      </div>
+
+      <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+            
+         <button id="loc_btn" class="btn btn-primary btn-lg" onclick="myFunction_loc()" >Η τοποθεσία μου  <i class="fa fa-map-marker"></i></button>  
+        <div id="display_loc" style="display: none">
+        <form class="form" name="formb" ng-submit="">
+            
+            <div class="form-group">
+              <label style="color: aqua">Αναζητήστε νέα τοποθεσία</label>
+                  <input type="text" class="form-control" ng-model = "address" placeholder="{{location.formatted_address}}">
+            </div>
+            <div ng-controller="locationController">
+                <button ng-click="findLocation()" onclick class="btn btn-info">Εύρεση νέας τοποθεσίας  <i class="fa fa-search"></i> </button>
+                <br>
+                <br>
+                <div id="map" align = "center"> </div>
+            </div>
+            <br>
+            <button ng-click="updateProvider('location',{})"  type="submit" class="btn btn-primary mb-2">Αποθήκευση νέας τοποθεσίας!<i class="fa fa-check" ></i></button>
+        </form>
+        
+        
+          </div>
+      </div>
+  </div><!-- /.navbar-collapse -->
+  
+  
+      
+      <!--end form-->
+    </div>
+	
+  <div ng-if=!isProvider class="container" style="text-align: center;width: 100%;">
+    <div style="width: 100%;text-align: center;" class="row"  >
+    <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+        <button id="synopsis_btn" class="btn btn-info btn-lg" onclick="myFunction()" >Στοιχεία του λογαριασμού μου  <i class="fa fa-info-circle"></i></button>		
+        
+        <div id="synopsis" style="display: none">
+        <h4 style="color: azure">Εικόνα προφίλ</strong></h4>
+    	<br>
+    	<input type='file' onchange="readURL(this);" ng-file-select="onFileSelect($files)"/>
+    	<img id="blah" src="#" alt="your image" />
+    	<br>
+        <h4 style="color: azure"> Όνομα χρήστη </h4>
+        <input style="width: 100%" type="text"  class="form-control" value={{username}} readonly>
+        <br>
+		<h4 style="color: azure">Όνομα </h4>
+        <input style="width: 100%" type="text" class="form-control"  value={{firstname}} readonly>
+        <br>
+        <h4 style="color: azure">Επώνυμο  </h4>
+        <input style="width: 100%" type="text" class="form-control"  value={{lastname}} readonly>
+        
+      
+       
+      <h6 style="color: azure">*Συμπληρώστε στοιχεία επικοινωνίας για να λαμβάνετε ενημερώσεις. </h6>
+        <form class="form" name="forma" ng-submit="updateParent('email',newemail)">
+          <div class="form-group">
+            <label style="color: aqua"><h4>Ηλεκτρονική Διεύθυνση </h4></label>
+				<input type="email" class="form-control" ng-model="newemail" placeholder={{email}}>
+          </div>
+          <button type="submit" class="btn btn-primary">Αποθήκευση αλλαγών!  <i class="fa fa-check"></i></button>
+        </form>
+      <form class="form" name="formb" ng-submit="updateParent('mobile',newphone)">
+          <div class="form-group">
+            <label style="color: aqua"><h4>Τηλέφωνο Επικοινωνίας</h4></label>
+				<input type="text" class="form-control" ng-model="newphone" placeholder={{mobile}}>
+          </div>
+          <button type="submit" class="btn btn-primary">Αποθήκευση αλλαγών!  <i class="fa fa-check"></i></button>
+        </form>
+        
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+        <button id="points_btn" class="btn btn-success btn-lg" onclick="myFunction_points()" >Οι πόντοι μου  <i class="fa fa-credit-card"></i></button>		
+        <div id="display_points" style="display: none"> 
+        <h2 style="color: green"><strong> Οι πόντοι μου</strong></h2>
+        <br>
+        <input style="width: 100%" type="text"  class="form-control" value={{points}} readonly> 
+        <br>
+        <br>
+		<button onclick="location.href='/#/transfer';" class="btn btn-success btn-lg">Εισαγωγή πόντων μέσω κάρτας <i class="fa fa-plus" ></i></button>
+          </div>  
+    </div>
+      <div class="col-md-4 col-sm-12 col-lg-4 col-xs-12">
+        <button id="loc_btn" class="btn btn-primary btn-lg" onclick="myFunction_loc()" >Η τοποθεσία μου  <i class="fa fa-map-marker"></i></button>  
+        <div id="display_loc" style="display: none">
+          <h2 style="color: green"><strong> Η τοποθεσία μου</strong></h2>
+        <br>
+        <input style="width: 100%" type="text"  class="form-control" ng-model = "address" placeholder = "{{location.formatted_address}}"> 
+        <div ng-controller="locationController">
+            <button ng-click="findLocation()" onclick class="btn btn-info">Εύρεση νέας τοποθεσίας  <i class="fa fa-search"></i> </button>
+            <br>
+            <br>
+            <div id="map" align = "center"> </div>
+        </div>
+        <br>
+		<button ng-click="updateParent('location',{})" class="btn btn-success btn-lg">Ανανέωση Τοποθεσίας <i class="fa fa-pencil" ></i></button>
+        <p style="height: 50px"></p>
+          </div>    
+      </div>
+  </div><!-- /.navbar-collapse -->
+  
+  
+      
+      <!--end form-->
+    </div>
+<script type="text/javascript" >
+function myFunction() {
+    var x = document.getElementById("synopsis");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+function myFunction_points() {
+    var x = document.getElementById("display_points");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+function myFunction_loc() {
+    var x = document.getElementById("display_loc");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+function myFunction_des() {
+    var x = document.getElementById("prov_des");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>  
+
+
+<!--script type="text/javascript" src="signup.js"></script>
+</body>
+</html!>
